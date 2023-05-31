@@ -8,6 +8,7 @@ import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
 import { UserContextProvider } from "./context/UserContext";
 import Layout from "./components/Layout";
+
 function App() {
   return (
     <UserContextProvider>

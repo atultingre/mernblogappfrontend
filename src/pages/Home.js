@@ -1,20 +1,25 @@
 import Post from "../components/Post";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../api";
 
 export default function Home() {
-  const [posts,setPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
-    fetch('http://localhost:4000/post').then(response => {
-      response.json().then(posts => {
+    fetch(`${BASE_URL}/post`,{
+      // mode: "no-cors",
+    }).then((response) => {
+      response.json().then((posts) => {
+        console.log(posts);
         setPosts(posts);
       });
     });
   }, []);
+
   return (
     <>
-      {posts.length > 0 && posts.map(post => (
-        <Post {...post} />
-      ))}
+      {posts.length > 0 &&
+        posts.map((post, index) => <Post {...post} key={index} />)}
     </>
   );
 }

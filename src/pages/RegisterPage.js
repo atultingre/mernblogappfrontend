@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { BASE_URL } from "../api";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function register(e) {
-    e.preventDefault();
-    const response = await fetch("http://localhost:4000/register", {
+  async function register(ev) {
+    ev.preventDefault();
+    const response = await fetch(`${BASE_URL}/register`, {
+      // mode: "no-cors",
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
@@ -24,13 +26,13 @@ export default function RegisterPage() {
         type="text"
         placeholder="username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(ev) => setUsername(ev.target.value)}
       />
       <input
         type="password"
         placeholder="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(ev) => setPassword(ev.target.value)}
       />
       <button>Register</button>
     </form>
